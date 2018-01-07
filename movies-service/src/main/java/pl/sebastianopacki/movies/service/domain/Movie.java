@@ -12,7 +12,7 @@ import java.util.Set;
  * Created by seb on 05.01.18.
  */
 @Entity
-@Table(name="movies_bl")
+@Table(name="movie_tbl")
 public class Movie {
 
     @Id
@@ -23,7 +23,11 @@ public class Movie {
 
     @ElementCollection(targetClass=Actor.class)
     private Set<Actor> actors;
+
     private Director director;
+
+    public Movie() {
+    }
 
     Movie(MovieDTO movieDTO){
         this.id = new MovieId(movieDTO.getId());

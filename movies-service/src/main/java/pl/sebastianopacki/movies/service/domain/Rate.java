@@ -11,6 +11,8 @@ import java.util.Objects;
  */
 @Embeddable
 class Rate implements Serializable {
+    public Rate() {
+    }
 
     private Double rate;
 

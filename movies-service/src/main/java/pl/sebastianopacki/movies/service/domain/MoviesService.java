@@ -41,10 +41,10 @@ public class MoviesService {
         for(Movie movie : movies){
             MovieDTO movieDTO = new MovieDTO();
             movieDTO.setTitle(new TitleDTO(movie.getTitle().getTitle()));
-            movieDTO.setDirector(new DirectorDTO(movie.getDirector().getDirectorName()));
+            movieDTO.setDirector(new DirectorDTO(movie.getDirector().getDirector()));
             Set<ActorDTO> actorDTOS = new HashSet<>();
             for(Actor actor : movie.getActors()){
-                actorDTOS.add(new ActorDTO(actor.getActorName()));
+                actorDTOS.add(new ActorDTO(actor.getActor()));
             }
             movieDTO.setActors(actorDTOS);
             movieDTO.setRate(new RateDTO(movie.getRate().getRate()));

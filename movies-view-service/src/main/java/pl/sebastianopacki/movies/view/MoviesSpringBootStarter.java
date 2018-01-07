@@ -11,6 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("pl.sebastianopacki")
 public class MoviesSpringBootStarter {
     public static void main(String[] args) {
-        SpringApplication.run(MoviesSpringBootStarter .class);
+        SpringApplication.run(MoviesSpringBootStarter.class);
     }
 }

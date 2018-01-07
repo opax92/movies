@@ -15,6 +15,9 @@ class MovieId implements Serializable{
         this.id = id;
     }
 
+    public MovieId() {
+    }
+
     public Integer getId() {
         return id;
     }

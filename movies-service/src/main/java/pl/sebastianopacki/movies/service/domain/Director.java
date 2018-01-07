@@ -11,17 +11,20 @@ import java.io.Serializable;
 @Embeddable
 class Director implements Serializable {
 
-    private String directorName;
+    private String director;
 
-    public Director(String directorName) {
-        this.directorName = directorName;
+    public Director() {
+    }
+
+    public Director(String director) {
+        this.director = director;
     }
 
     public Director(DirectorDTO directorDTO){
-        this.directorName = directorDTO.getDirector();
+        this.director = directorDTO.getDirector();
     }
 
-    public String getDirectorName() {
-        return directorName;
+    public String getDirector() {
+        return director;
     }
 }

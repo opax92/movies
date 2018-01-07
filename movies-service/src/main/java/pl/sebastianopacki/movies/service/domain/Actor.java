@@ -2,24 +2,32 @@ package pl.sebastianopacki.movies.service.domain;
 
 import pl.sebastianopacki.movies.service.dto.ActorDTO;
 
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Created by seb on 05.01.18.
  */
-@Embeddable
+@Entity
+@Table(name = "actor_tbl")
 class Actor implements Serializable {
 
-    private String actorName;
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-    public Actor(String actorName) {
-        this.actorName = actorName;
+    private String actor;
+
+    public Actor() {
+    }
+
+    public Actor(String actor) {
+        this.actor = actor;
     }
 
     public Actor(ActorDTO actorDTO){
-        this.actorName = actorDTO.getActor();
+        this.actor = actorDTO.getActor();
     }
 
     @Override
@@ -27,15 +35,15 @@ class Actor implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Actor actor = (Actor) o;
-        return Objects.equals(actorName, actor.actorName);
+        return Objects.equals(this.actor, actor.actor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(actorName);
+        return Objects.hash(actor);
     }
 
-    public String getActorName() {
-        return actorName;
+    public String getActor() {
+        return actor;
     }
 }

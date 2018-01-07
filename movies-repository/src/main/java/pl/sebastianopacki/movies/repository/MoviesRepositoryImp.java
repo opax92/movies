@@ -27,10 +27,9 @@ public class MoviesRepositoryImp implements MoviesRepository {
 
     public List<Movie> findAllMovies() {
         Session currentSession = postgresqlHibernateSessionFactory.getCurrentSession();
-        Query select = currentSession.createQuery("from Movie as movie where movie.title = :title");
-        select.setParameter("title", "a");
+        Query select = currentSession.createQuery("from Movie");
 
-        return null;
+        return select.list();
     }
 
     public void deleteMovie(Integer id) {

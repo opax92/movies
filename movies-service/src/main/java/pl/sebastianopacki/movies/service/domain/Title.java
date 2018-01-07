@@ -11,11 +11,13 @@ import java.util.Objects;
  * Created by seb on 05.01.18.
  */
 @Embeddable
-class Title implements Serializable {
+public class Title implements Serializable {
+    public Title() {
+    }
 
-    private final String title;
+    private String title;
 
-    Title(String title) {
+    public Title(String title) {
         TitleValidator titleValidator = new TitleValidatorImpl(title);
         titleValidator.validateTitle(title);
         this.title = title;
@@ -27,6 +29,10 @@ class Title implements Serializable {
 
     String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     private static class TitleValidatorImpl implements TitleValidator {
