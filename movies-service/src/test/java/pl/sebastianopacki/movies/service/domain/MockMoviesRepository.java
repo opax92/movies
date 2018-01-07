@@ -19,7 +19,7 @@ public class MockMoviesRepository implements MoviesRepository {
         int toRemove = -1;
 
         for (int i = 0; i < movies.size(); ++i) {
-            if (movies.get(i).getId().getId().equals(id)) {
+            if (movies.get(i).getId().equals(id)) {
                 toRemove = i;
             }
         }

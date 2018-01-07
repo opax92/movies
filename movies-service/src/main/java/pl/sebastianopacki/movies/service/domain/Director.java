@@ -1,7 +1,5 @@
 package pl.sebastianopacki.movies.service.domain;
 
-import pl.sebastianopacki.movies.service.dto.DirectorDTO;
-
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
@@ -13,15 +11,11 @@ class Director implements Serializable {
 
     private String director;
 
-    public Director() {
+    private Director() {
     }
 
     public Director(String director) {
         this.director = director;
-    }
-
-    public Director(DirectorDTO directorDTO){
-        this.director = directorDTO.getDirector();
     }
 
     public String getDirector() {

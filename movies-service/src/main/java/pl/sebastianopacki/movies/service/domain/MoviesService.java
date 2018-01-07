@@ -28,28 +28,28 @@ public class MoviesService {
         allMovies.sort(Comparator.comparing(o -> o.getRate().getRate()));
         Collections.reverse(allMovies);
 
-        return toDTO(allMovies);
+        return convertToDTO(allMovies);
     }
 
     public void deleteMovie(Integer movieId){
         moviesRepository.deleteMovie(movieId);
     }
 
-    private List<MovieDTO> toDTO(List<Movie> movies){
-        List<MovieDTO> result = new ArrayList<>();
+    private MovieDTO convertToDTO(Movie movie){
+        MovieDTO result = new MovieDTO();
+        result.setId(movie.getId());
+        result.setDirector(movie.getDirector().getDirector());
+        result.setTitle(movie.getTitle().getTitle());
+        result.setRate(movie.getRate().getRate());
+        result.setActors(movie.getActors().getActors());
 
+        return result;
+    }
+
+    private List<MovieDTO> convertToDTO(List<Movie> movies){
+        List<MovieDTO> result = new ArrayList<>();
         for(Movie movie : movies){
-            MovieDTO movieDTO = new MovieDTO();
-            movieDTO.setTitle(new TitleDTO(movie.getTitle().getTitle()));
-            movieDTO.setDirector(new DirectorDTO(movie.getDirector().getDirector()));
-            Set<ActorDTO> actorDTOS = new HashSet<>();
-            for(Actor actor : movie.getActors()){
-                actorDTOS.add(new ActorDTO(actor.getActor()));
-            }
-            movieDTO.setActors(actorDTOS);
-            movieDTO.setRate(new RateDTO(movie.getRate().getRate()));
-            movieDTO.setId(movie.getId().getId());
-            result.add(movieDTO);
+            result.add(convertToDTO(movie));
         }
 
         return result;

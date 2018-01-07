@@ -1,6 +1,5 @@
 package pl.sebastianopacki.movies.service.domain;
 
-import pl.sebastianopacki.movies.service.dto.ActorDTO;
 import pl.sebastianopacki.movies.service.dto.MovieDTO;
 
 import javax.persistence.*;
@@ -17,27 +16,63 @@ public class Movie {
 
     @Id
     @GeneratedValue
-    private MovieId id;
+    private Integer id;
     private Title title;
     private Rate rate;
 
-    @ElementCollection(targetClass=Actor.class)
-    private Set<Actor> actors;
-
+    @ElementCollection(targetClass=Actors.class)
+    private Actors actors;
     private Director director;
 
-    public Movie() {
+    private Movie() {
     }
 
     Movie(MovieDTO movieDTO){
-        this.id = new MovieId(movieDTO.getId());
+        this.id = movieDTO.getId();
         this.title = new Title(movieDTO.getTitle());
         this.rate = new Rate(movieDTO.getRate());
-        actors = new HashSet<>();
-        for(ActorDTO actorDTO : movieDTO.getActors()){
-            actors.add(new Actor(actorDTO));
-        }
+        this.actors = new Actors(movieDTO.getActors());
         this.director = new Director(movieDTO.getDirector());
+    }
+
+    Integer getId() {
+        return id;
+    }
+
+    Title getTitle() {
+        return title;
+    }
+
+    Rate getRate() {
+        return rate;
+    }
+
+    Actors getActors() {
+        return actors;
+    }
+
+    Director getDirector() {
+        return director;
+    }
+
+    private void setId(Integer id) {
+        this.id = id;
+    }
+
+    private void setTitle(Title title) {
+        this.title = title;
+    }
+
+    private void setRate(Rate rate) {
+        this.rate = rate;
+    }
+
+    private void setActors(Actors actors) {
+        this.actors = actors;
+    }
+
+    private void setDirector(Director director) {
+        this.director = director;
     }
 
     @Override
@@ -54,29 +89,5 @@ public class Movie {
     @Override
     public int hashCode() {
         return Objects.hash(id, title, rate, actors, director);
-    }
-
-    public void setId(MovieId id) {
-        this.id = id;
-    }
-
-    public Title getTitle() {
-        return title;
-    }
-
-    public MovieId getId() {
-        return id;
-    }
-
-    public Rate getRate() {
-        return rate;
-    }
-
-    public Set<Actor> getActors() {
-        return actors;
-    }
-
-    public Director getDirector() {
-        return director;
     }
 }

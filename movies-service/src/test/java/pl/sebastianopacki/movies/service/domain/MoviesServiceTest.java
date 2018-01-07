@@ -3,10 +3,7 @@ package pl.sebastianopacki.movies.service.domain;
 import pl.sebastianopacki.movies.service.dto.*;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -100,12 +97,12 @@ public class MoviesServiceTest {
         List<MovieDTO> allMoviesSortedByRating = moviesService.findAllMoviesSortedByRating();
 
         for(int i = 0; i < titles.length; ++i){
-            assertTrue(allMoviesSortedByRating.get(i).getTitle().getTitle().equals(titles[i]));
+            assertTrue(allMoviesSortedByRating.get(i).getTitle().equals(titles[i]));
         }
     }
 
     private MoviesConfiguration movieTitle(String title) {
-        return new MoviesConfiguration(new TitleDTO(title));
+        return new MoviesConfiguration(title);
     }
 
     private void addMovies() {
@@ -123,31 +120,29 @@ public class MoviesServiceTest {
     }
 
     private class MoviesConfiguration {
-        private TitleDTO title;
-        private RateDTO rate;
-        private DirectorDTO director;
-        private Set<ActorDTO> actors = new HashSet<>();
+        private String title;
+        private Double rate;
+        private String director;
+        private Set<String> actors = new HashSet<>();
 
-        private MoviesConfiguration(TitleDTO title) {
+        private MoviesConfiguration(String title) {
             this.title = title;
         }
 
         private MoviesConfiguration withRating(Double rating) {
-            rate = new RateDTO(rating);
+            rate = rating;
 
             return this;
         }
 
         private MoviesConfiguration withDirector(String director) {
-            this.director = new DirectorDTO(director);
+            this.director = director;
 
             return this;
         }
 
         private MoviesConfiguration withActors(String... actors) {
-            for(String str : actors){
-                this.actors.add(new ActorDTO(str));
-            }
+            Collections.addAll(this.actors, actors);
 
             return this;
         }

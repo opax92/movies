@@ -9,14 +9,14 @@ import java.util.Set;
 public class MovieDTO {
 
     private Integer id;
-    private TitleDTO title;
-    private RateDTO rate;
-    private Set<ActorDTO> actors;
-    private DirectorDTO director;
+    private String title;
+    private Double rate;
+    private Set<String> actors;
+    private String director;
 
     public MovieDTO(){}
 
-    public MovieDTO(TitleDTO title, RateDTO rate, Set<ActorDTO> actors, DirectorDTO director) {
+    public MovieDTO(String title, Double rate, Set<String> actors, String director) {
         this.title = title;
         this.rate = rate;
         this.actors = actors;
@@ -27,40 +27,40 @@ public class MovieDTO {
         return id;
     }
 
-    public void setTitle(TitleDTO title) {
-        this.title = title;
-    }
-
-    public RateDTO getRate() {
-        return rate;
-    }
-
-    public void setRate(RateDTO rate) {
-        this.rate = rate;
-    }
-
-    public Set<ActorDTO> getActors() {
-        return actors;
-    }
-
-    public void setActors(Set<ActorDTO> actors) {
-        this.actors = actors;
-    }
-
-    public DirectorDTO getDirector() {
-        return director;
-    }
-
-    public void setDirector(DirectorDTO director) {
-        this.director = director;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public TitleDTO getTitle() {
+    public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Double getRate() {
+        return rate;
+    }
+
+    public void setRate(Double rate) {
+        this.rate = rate;
+    }
+
+    public Set<String> getActors() {
+        return actors;
+    }
+
+    public void setActors(Set<String> actors) {
+        this.actors = actors;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
     }
 
     @Override
@@ -68,8 +68,7 @@ public class MovieDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MovieDTO movieDTO = (MovieDTO) o;
-        return
-                Objects.equals(title, movieDTO.title) &&
+        return Objects.equals(title, movieDTO.title) &&
                 Objects.equals(rate, movieDTO.rate) &&
                 Objects.equals(actors, movieDTO.actors) &&
                 Objects.equals(director, movieDTO.director);

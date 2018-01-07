@@ -1,7 +1,5 @@
 package pl.sebastianopacki.movies.service.domain;
 
-import pl.sebastianopacki.movies.service.dto.RateDTO;
-
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
@@ -11,17 +9,14 @@ import java.util.Objects;
  */
 @Embeddable
 class Rate implements Serializable {
-    public Rate() {
-    }
 
     private Double rate;
 
-    Rate(Double rate) {
-        this.rate = rate;
+    private Rate() {
     }
 
-    Rate(RateDTO rateDTO){
-        this.rate = rateDTO.getRate();
+    Rate(Double rate) {
+        this.rate = rate;
     }
 
     Double getRate() {
