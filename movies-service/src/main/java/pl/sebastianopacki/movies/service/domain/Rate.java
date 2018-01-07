@@ -3,13 +3,14 @@ package pl.sebastianopacki.movies.service.domain;
 import pl.sebastianopacki.movies.service.dto.RateDTO;
 
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Created by seb on 05.01.18.
  */
 @Embeddable
-class Rate {
+class Rate implements Serializable {
 
     private Double rate;
 

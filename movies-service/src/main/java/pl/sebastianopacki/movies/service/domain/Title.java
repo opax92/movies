@@ -4,13 +4,14 @@ import pl.sebastianopacki.movies.service.dto.TitleDTO;
 import pl.sebastianopacki.movies.service.exceptions.InvalidTitleMovieException;
 
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Created by seb on 05.01.18.
  */
 @Embeddable
-class Title {
+class Title implements Serializable {
 
     private final String title;
 

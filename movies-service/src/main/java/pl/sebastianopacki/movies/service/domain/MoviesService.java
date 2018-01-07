@@ -9,11 +9,12 @@ import java.util.*;
 /**
  * Created by seb on 05.01.18.
  */
+@Service
 public class MoviesService {
 
+    private final MoviesRepository moviesRepository;
 
-    private MoviesRepository moviesRepository;
-
+    @Autowired
     public MoviesService(MoviesRepository moviesRepository) {
         this.moviesRepository = moviesRepository;
     }

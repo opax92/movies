@@ -3,7 +3,7 @@ package pl.sebastianopacki.movies.service.domain;
 import pl.sebastianopacki.movies.service.dto.ActorDTO;
 import pl.sebastianopacki.movies.service.dto.MovieDTO;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -12,16 +12,21 @@ import java.util.Set;
  * Created by seb on 05.01.18.
  */
 @Entity
+@Table(name="movies_bl")
 public class Movie {
 
-    private Id id;
+    @Id
+    @GeneratedValue
+    private MovieId id;
     private Title title;
     private Rate rate;
+
+    @ElementCollection(targetClass=Actor.class)
     private Set<Actor> actors;
     private Director director;
 
     Movie(MovieDTO movieDTO){
-        this.id = new Id(movieDTO.getId());
+        this.id = new MovieId(movieDTO.getId());
         this.title = new Title(movieDTO.getTitle());
         this.rate = new Rate(movieDTO.getRate());
         actors = new HashSet<>();
@@ -47,7 +52,7 @@ public class Movie {
         return Objects.hash(id, title, rate, actors, director);
     }
 
-    public void setId(Id id) {
+    public void setId(MovieId id) {
         this.id = id;
     }
 
@@ -55,7 +60,7 @@ public class Movie {
         return title;
     }
 
-    public Id getId() {
+    public MovieId getId() {
         return id;
     }
 

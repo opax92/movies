@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import pl.sebastianopacki.movies.service.domain.MoviesService;
+import pl.sebastianopacki.movies.service.dto.MovieDTO;
+
+import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -14,9 +18,16 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping(value = "/movies")
 public class MoviesController {
 
+    private final MoviesService moviesService;
+
+    @Autowired
+    public MoviesController(MoviesService moviesService) {
+        this.moviesService = moviesService;
+    }
+
     @RequestMapping(method = GET)
     @ResponseBody
-    public String test(){
-        return "elo";
+    public List<MovieDTO> test(){
+        return moviesService.findAllMoviesSortedByRating();
     }
 }

@@ -11,5 +11,8 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.0.12.Final'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.0.12.Final'
+    compile files('../lib/postgresql-9.3-1104.jdbc41.jar')
     compile project(':movies-service')
 }

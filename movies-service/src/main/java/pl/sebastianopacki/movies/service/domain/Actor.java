@@ -3,13 +3,14 @@ package pl.sebastianopacki.movies.service.domain;
 import pl.sebastianopacki.movies.service.dto.ActorDTO;
 
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Created by seb on 05.01.18.
  */
 @Embeddable
-class Actor {
+class Actor implements Serializable {
 
     private String actorName;
 
