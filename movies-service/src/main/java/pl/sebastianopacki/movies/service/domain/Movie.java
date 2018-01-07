@@ -19,8 +19,6 @@ public class Movie {
     private Integer id;
     private Title title;
     private Rate rate;
-
-    @ElementCollection(targetClass=Actors.class)
     private Actors actors;
     private Director director;
 

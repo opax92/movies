@@ -1,5 +1,6 @@
 package pl.sebastianopacki.movies.service.domain;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import java.util.Objects;
 import java.util.Set;
@@ -10,13 +11,14 @@ import java.util.Set;
 @Embeddable
  class Actors {
 
+    @ElementCollection(targetClass=String.class)
     private Set<String> actors;
 
-    public Actors(Set<String> actors) {
+    Actors(Set<String> actors) {
         this.actors = actors;
     }
 
-    public Set<String> getActors() {
+    Set<String> getActors() {
         return actors;
     }
 
