@@ -1,0 +1,5 @@
+rootProject.name = 'movies'
+include 'movies-service'
+include 'movies-view-service'
+include 'movies-repository'
+
