@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="movies-repository_main" target="1.8" />
+      <module name="movies-repository_test" target="1.8" />
+      <module name="movies-service_main" target="1.8" />
+      <module name="movies-service_test" target="1.8" />
+      <module name="movies-view-service_main" target="1.8" />
+      <module name="movies-view-service_test" target="1.8" />
+      <module name="movies_main" target="1.8" />
+      <module name="movies_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

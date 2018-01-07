@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies.iml" filepath="$PROJECT_DIR$/.idea/modules/movies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies-repository/movies-repository.iml" filepath="$PROJECT_DIR$/.idea/modules/movies-repository/movies-repository.iml" group="movies-repository" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies-repository/movies-repository_main.iml" filepath="$PROJECT_DIR$/.idea/modules/movies-repository/movies-repository_main.iml" group="movies-repository" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies-repository/movies-repository_test.iml" filepath="$PROJECT_DIR$/.idea/modules/movies-repository/movies-repository_test.iml" group="movies-repository" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies-service/movies-service.iml" filepath="$PROJECT_DIR$/.idea/modules/movies-service/movies-service.iml" group="movies-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies-service/movies-service_main.iml" filepath="$PROJECT_DIR$/.idea/modules/movies-service/movies-service_main.iml" group="movies-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies-service/movies-service_test.iml" filepath="$PROJECT_DIR$/.idea/modules/movies-service/movies-service_test.iml" group="movies-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies-view-service/movies-view-service.iml" filepath="$PROJECT_DIR$/.idea/modules/movies-view-service/movies-view-service.iml" group="movies-view-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies-view-service/movies-view-service_main.iml" filepath="$PROJECT_DIR$/.idea/modules/movies-view-service/movies-view-service_main.iml" group="movies-view-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies-view-service/movies-view-service_test.iml" filepath="$PROJECT_DIR$/.idea/modules/movies-view-service/movies-view-service_test.iml" group="movies-view-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies_main.iml" filepath="$PROJECT_DIR$/.idea/modules/movies_main.iml" group="movies" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/movies_test.iml" filepath="$PROJECT_DIR$/.idea/modules/movies_test.iml" group="movies" />
+    </modules>
+  </component>
+</project>
