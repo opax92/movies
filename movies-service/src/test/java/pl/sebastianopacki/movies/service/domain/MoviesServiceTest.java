@@ -2,6 +2,9 @@ package pl.sebastianopacki.movies.service.domain;
 
 import pl.sebastianopacki.movies.service.dto.*;
 import org.junit.Test;
+import pl.sebastianopacki.movies.service.result.MovieResult;
+import pl.sebastianopacki.movies.service.result.MovieResultFailure;
+import pl.sebastianopacki.movies.service.result.MovieResultSuccess;
 
 import java.util.*;
 
@@ -12,9 +15,11 @@ import static org.junit.Assert.*;
  */
 
 public class MoviesServiceTest {
+
     private MoviesRepository moviesRepository = new MockMoviesRepository();
     private MoviesService moviesService = new MoviesService(moviesRepository);
     private List<MovieDTO> movies = new ArrayList<>();
+    private MovieResult movieResult;
     private Integer currentId = 0;
 
     @Test
@@ -26,8 +31,22 @@ public class MoviesServiceTest {
         addMovies();
 
         //then
+        assertResultSuccess();
         assertCountMovies(1);
         movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "two").exists();
+    }
+
+
+    @Test
+    public void addMovieWithWrongTitle(){
+        //given
+        movieTitle("title3").withRating(2.4).withDirector("director").withActors("one", "dwa").create();
+
+        //when
+        addMovies();
+
+        //then
+        assertResultFailure();
     }
 
     @Test
@@ -41,6 +60,7 @@ public class MoviesServiceTest {
         addMovies();
 
         //then
+        assertResultSuccess();
         assertCountMovies(3);
         movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "dwa").exists();
         movieTitle("titleTwo").withRating(4.0).withDirector("director2").withActors("one2", "dwa").exists();
@@ -57,25 +77,9 @@ public class MoviesServiceTest {
         removeMovieWithId(0);
 
         //then
+        assertResultSuccess();
         assertCountMovies(0);
         movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "dwa").notExists();
-    }
-
-    @Test
-    public void removeNotExistsMovie() {
-        //given
-        movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "dwa").create();
-        movieTitle("titleTwo").withRating(3.0).withDirector("director2").withActors("one", "dwa").create();
-        addMovies();
-
-        //when
-        removeMovieWithId(3);
-
-        //then
-        assertCountMovies(2);
-        movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "dwa").exists();
-        movieTitle("titleTwo").withRating(3.0).withDirector("director2").withActors("one", "dwa").exists();
-//        assertMoviesResult(MOVIE_NOT_EXISTS);
     }
 
     @Test
@@ -90,6 +94,7 @@ public class MoviesServiceTest {
         addMovies();
 
         //then
+        assertResultSuccess();
         assertMoviesOrderByTitle("titleThree", "titleFour", "title", "titleTwo");
     }
 
@@ -107,7 +112,7 @@ public class MoviesServiceTest {
 
     private void addMovies() {
         for (MovieDTO movie : movies) {
-            moviesService.addMovie(movie);
+            movieResult = moviesService.createMovie(movie);
         }
     }
 
@@ -115,8 +120,16 @@ public class MoviesServiceTest {
         assertEquals(count, moviesRepository.count());
     }
 
+    private void assertResultSuccess(){
+        assertTrue(movieResult instanceof MovieResultSuccess);
+    }
+
+    private void assertResultFailure(){
+        assertTrue(movieResult instanceof MovieResultFailure);
+    }
+
     private void removeMovieWithId(Integer id){
-        moviesService.deleteMovie(id);
+        moviesService.deleteMovie(new MovieIdDTO(id));
     }
 
     private class MoviesConfiguration {

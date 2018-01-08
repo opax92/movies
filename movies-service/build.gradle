@@ -13,11 +13,10 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile('org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final')
     compile group: 'org.springframework', name: 'spring-orm', version: '4.3.13.RELEASE'
-// https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
     compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.11.9.RELEASE'
-// https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
     compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.13'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.3'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.3.3'
 
     compile group: 'javax.transaction', name: 'javax.transaction-api', version: '1.2'
-
 }

@@ -30,16 +30,16 @@ public class MoviesRepositoryImp implements MoviesRepository {
         return select.list();
     }
 
-    public void deleteMovie(Integer id) {
+    public void deleteMovie(Integer movieId) {
         Session currentSession = postgresqlHibernateSessionFactory.getCurrentSession();
-        Query select = currentSession.createQuery("delete Movie as movie where movie.id = :id");
-        select.setParameter("id", id);
-
+        Query query = currentSession.createQuery("delete from Movie as movie where movie.id = :movieId");
+        query.setParameter("movieId", movieId);
+        query.executeUpdate();
     }
 
     public void createMovie(Movie movie) {
         Session currentSession = postgresqlHibernateSessionFactory.getCurrentSession();
-        currentSession.saveOrUpdate(movie);
+        currentSession.save(movie);
     }
 
     public Integer count() {

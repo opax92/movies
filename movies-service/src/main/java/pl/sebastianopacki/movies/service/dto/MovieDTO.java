@@ -1,6 +1,10 @@
 package pl.sebastianopacki.movies.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.istack.internal.NotNull;
+
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,21 +19,25 @@ public class MovieDTO implements Serializable{
     private Set<String> actors;
     private String director;
 
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:sss", timezone="UTC")
+    private Date createdAt;
+
     public MovieDTO(){}
 
-    public MovieDTO(String title, Double rate, Set<String> actors, String director) {
+    public MovieDTO(String title, Double rate, Set<String> actors, String director, Date createdAt) {
         this.title = title;
         this.rate = rate;
         this.actors = actors;
         this.director = director;
+        this.createdAt = createdAt;
     }
 
-    public MovieDTO(Integer id, String title, Double rate, Set<String> actors, String director) {
-        this.id = id;
-        this.title = title;
-        this.rate = rate;
-        this.actors = actors;
-        this.director = director;
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Integer getId() {

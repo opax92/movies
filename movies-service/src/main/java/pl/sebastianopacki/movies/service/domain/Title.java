@@ -18,6 +18,9 @@ class Title implements Serializable {
     }
 
     public Title(String title) {
+        if(Objects.isNull(title)){
+            throw new InvalidTitleMovieException();
+        }
         TitleValidator titleValidator = new TitleValidatorImpl(title);
         titleValidator.validateTitle(title);
         this.title = title;

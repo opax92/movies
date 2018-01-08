@@ -3,6 +3,7 @@ package pl.sebastianopacki.movies.service.domain;
 import pl.sebastianopacki.movies.service.dto.MovieDTO;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -19,6 +20,8 @@ public class Movie {
     private Rate rate;
     private Actors actors;
     private Director director;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt = new Date();
 
     private Movie() {
     }
@@ -51,7 +54,7 @@ public class Movie {
         return director;
     }
 
-    private void setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -76,7 +79,8 @@ public class Movie {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Movie movie = (Movie) o;
-        return Objects.equals(title, movie.title) &&
+        return
+                Objects.equals(title, movie.title) &&
                 Objects.equals(rate, movie.rate) &&
                 Objects.equals(actors, movie.actors) &&
                 Objects.equals(director, movie.director);
@@ -85,5 +89,9 @@ public class Movie {
     @Override
     public int hashCode() {
         return Objects.hash(title, rate, actors, director);
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
     }
 }
