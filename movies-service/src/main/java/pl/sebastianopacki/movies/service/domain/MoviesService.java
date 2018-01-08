@@ -4,12 +4,14 @@ import pl.sebastianopacki.movies.service.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
 /**
  * Created by seb on 05.01.18.
  */
 @Service
+@Transactional
 public class MoviesService {
 
     private final MoviesRepository moviesRepository;

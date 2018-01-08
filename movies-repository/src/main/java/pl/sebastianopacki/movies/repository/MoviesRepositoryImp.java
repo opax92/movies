@@ -8,14 +8,12 @@ import org.springframework.stereotype.Repository;
 import pl.sebastianopacki.movies.service.domain.Movie;
 import pl.sebastianopacki.movies.service.domain.MoviesRepository;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by seb on 07.01.18.
  */
 @Repository
-@Transactional
 public class MoviesRepositoryImp implements MoviesRepository {
 
     private final SessionFactory postgresqlHibernateSessionFactory;
@@ -41,7 +39,7 @@ public class MoviesRepositoryImp implements MoviesRepository {
 
     public void createMovie(Movie movie) {
         Session currentSession = postgresqlHibernateSessionFactory.getCurrentSession();
-        currentSession.save(movie);
+        currentSession.saveOrUpdate(movie);
     }
 
     public Integer count() {

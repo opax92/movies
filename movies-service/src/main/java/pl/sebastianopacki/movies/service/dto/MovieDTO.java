@@ -77,7 +77,7 @@ public class MovieDTO implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MovieDTO movieDTO = (MovieDTO) o;
-        return Objects.equals(id, movieDTO.id) &&
+        return
                 Objects.equals(title, movieDTO.title) &&
                 Objects.equals(rate, movieDTO.rate) &&
                 Objects.equals(actors, movieDTO.actors) &&
@@ -86,6 +86,6 @@ public class MovieDTO implements Serializable{
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, rate, actors, director);
+        return Objects.hash(title, rate, actors, director);
     }
 }
