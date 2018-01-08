@@ -1,12 +1,13 @@
 package pl.sebastianopacki.movies.service.dto;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 
 /**
  * Created by seb on 05.01.18.
  */
-public class MovieDTO {
+public class MovieDTO implements Serializable{
 
     private Integer id;
     private String title;
@@ -17,6 +18,14 @@ public class MovieDTO {
     public MovieDTO(){}
 
     public MovieDTO(String title, Double rate, Set<String> actors, String director) {
+        this.title = title;
+        this.rate = rate;
+        this.actors = actors;
+        this.director = director;
+    }
+
+    public MovieDTO(Integer id, String title, Double rate, Set<String> actors, String director) {
+        this.id = id;
         this.title = title;
         this.rate = rate;
         this.actors = actors;
@@ -68,7 +77,8 @@ public class MovieDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MovieDTO movieDTO = (MovieDTO) o;
-        return Objects.equals(title, movieDTO.title) &&
+        return Objects.equals(id, movieDTO.id) &&
+                Objects.equals(title, movieDTO.title) &&
                 Objects.equals(rate, movieDTO.rate) &&
                 Objects.equals(actors, movieDTO.actors) &&
                 Objects.equals(director, movieDTO.director);

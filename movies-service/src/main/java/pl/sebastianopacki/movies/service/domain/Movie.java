@@ -3,9 +3,7 @@ package pl.sebastianopacki.movies.service.domain;
 import pl.sebastianopacki.movies.service.dto.MovieDTO;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Created by seb on 05.01.18.
@@ -15,7 +13,7 @@ import java.util.Set;
 public class Movie {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
     private Title title;
     private Rate rate;

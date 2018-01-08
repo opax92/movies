@@ -56,8 +56,6 @@ public class HibernateConfiguration {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQL9Dialect");
         properties.put("hibernate.show_sql", "false");
-        properties.put("hbm2ddl.auto", "create");
-        properties.put("javax.persistence.schema-generation.database.action", "create");
         return properties;
     }
 }
