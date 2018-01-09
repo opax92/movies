@@ -10,14 +10,14 @@ import java.util.Objects;
  * Created by seb on 05.01.18.
  */
 @Embeddable
-class Title implements Serializable {
+public class Title implements Serializable {
 
     private String title;
 
     private Title() {
     }
 
-    public Title(String title) {
+    Title(String title) {
         if(Objects.isNull(title)){
             throw new InvalidTitleMovieException();
         }
@@ -57,16 +57,16 @@ class Title implements Serializable {
 
         @Override
         public void validateTitle(String title) {
-            if (!isTitleContainsOnlyLetters() || !isTitleHaveAtLeast3CharactersUpTo50()) {
+            if (!titleContainsOnlyLetters() || !titleHasAtLeast3CharactersUpTo50()) {
                 throw new InvalidTitleMovieException();
             }
         }
 
-        private boolean isTitleHaveAtLeast3CharactersUpTo50() {
+        private boolean titleHasAtLeast3CharactersUpTo50() {
             return titleToValidate.length() >= 3 && titleToValidate.length() <= 50;
         }
 
-        private boolean isTitleContainsOnlyLetters() {
+        private boolean titleContainsOnlyLetters() {
             return titleToValidate.chars().allMatch(Character::isLetter);
         }
     }

@@ -36,9 +36,23 @@ public class MoviesServiceTest {
         movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "two").exists();
     }
 
+    @Test
+    public void addMovieWhenExistsWithTheSameTitle() {
+        //given
+        movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "two").create();
+        movieTitle("title").withRating(2.0).withDirector("director").withActors("one", "two").create();
+
+        //when
+        addMovies();
+
+        //then
+        assertResultFailure();
+        assertCountMovies(1);
+        movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "two").exists();
+    }
 
     @Test
-    public void addMovieWithWrongTitle(){
+    public void addMovieWithWrongTitle() {
         //given
         movieTitle("title3").withRating(2.4).withDirector("director").withActors("one", "dwa").create();
 
@@ -101,7 +115,7 @@ public class MoviesServiceTest {
     private void assertMoviesOrderByTitle(String... titles) {
         List<MovieDTO> allMoviesSortedByRating = moviesService.findAllMoviesSortedByRating();
 
-        for(int i = 0; i < titles.length; ++i){
+        for (int i = 0; i < titles.length; ++i) {
             assertTrue(allMoviesSortedByRating.get(i).getTitle().equals(titles[i]));
         }
     }
@@ -116,19 +130,19 @@ public class MoviesServiceTest {
         }
     }
 
-    private void assertCountMovies(Integer count){
-        assertEquals(count, moviesRepository.count());
+    private void assertCountMovies(int count) {
+        assertEquals(count, moviesRepository.findAllMovies().size());
     }
 
-    private void assertResultSuccess(){
+    private void assertResultSuccess() {
         assertTrue(movieResult instanceof MovieResultSuccess);
     }
 
-    private void assertResultFailure(){
+    private void assertResultFailure() {
         assertTrue(movieResult instanceof MovieResultFailure);
     }
 
-    private void removeMovieWithId(Integer id){
+    private void removeMovieWithId(Integer id) {
         moviesService.deleteMovie(new MovieIdDTO(id));
     }
 
@@ -161,19 +175,19 @@ public class MoviesServiceTest {
         }
 
         private void create() {
-            MovieDTO movie = new MovieDTO(title, rate, actors, director);
+            MovieDTO movie = new MovieDTO(title, rate, actors, director, new Date());
             movie.setId(currentId++);
             movies.add(movie);
         }
 
         private void exists() {
-            MovieDTO movie = new MovieDTO(title, rate, actors, director);
+            MovieDTO movie = new MovieDTO(title, rate, actors, director, new Date());
             List<MovieDTO> allMoviesSortedByRating = moviesService.findAllMoviesSortedByRating();
             assertTrue(allMoviesSortedByRating.contains(movie));
         }
 
         private void notExists() {
-            MovieDTO movie = new MovieDTO(title, rate, actors, director);
+            MovieDTO movie = new MovieDTO(title, rate, actors, director, new Date());
             List<MovieDTO> allMoviesSortedByRating = moviesService.findAllMoviesSortedByRating();//TODO copy paste
             assertFalse(allMoviesSortedByRating.contains(movie));
         }

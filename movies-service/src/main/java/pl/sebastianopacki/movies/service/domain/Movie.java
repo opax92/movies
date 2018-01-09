@@ -5,6 +5,7 @@ import pl.sebastianopacki.movies.service.dto.MovieDTO;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Created by seb on 05.01.18.
@@ -23,7 +24,7 @@ public class Movie {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt = new Date();
 
-    private Movie() {
+    public Movie() {
     }
 
     Movie(MovieDTO movieDTO){
@@ -42,16 +43,16 @@ public class Movie {
         return title;
     }
 
-    Rate getRate() {
-        return rate;
+    Optional<Rate> getRate() {
+        return Optional.ofNullable(rate);
     }
 
     Actors getActors() {
         return actors;
     }
 
-    Director getDirector() {
-        return director;
+    Optional<Director> getDirector() {
+        return Optional.ofNullable(director);
     }
 
     public void setId(Integer id) {

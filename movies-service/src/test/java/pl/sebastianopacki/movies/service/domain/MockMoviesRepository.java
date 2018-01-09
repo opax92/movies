@@ -2,6 +2,7 @@ package pl.sebastianopacki.movies.service.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by seb on 06.01.18.
@@ -16,6 +17,11 @@ public class MockMoviesRepository implements MoviesRepository {
     }
 
     @Override
+    public Optional<Movie> findMovieByTitle(Title title) {
+        return movies.stream().filter(movie -> movie.getTitle().equals(title)).findAny();
+    }
+
+    @Override
     public void deleteMovie(Integer id) {
         movies.removeIf((Movie m) -> m.getId().equals(id));
     }
@@ -25,8 +31,4 @@ public class MockMoviesRepository implements MoviesRepository {
         movies.add(movie);
     }
 
-    @Override
-    public Integer count() {
-        return movies.size();
-    }
 }
