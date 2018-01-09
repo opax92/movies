@@ -4,9 +4,16 @@
     <facet type="Spring" name="Spring">
       <configuration />
     </facet>
+    <facet type="web" name="Web Gradle : movies-service-1.0-SNAPSHOT.war">
+      <configuration>
+        <webroots>
+          <root url="file://E:\apps\movies\movies-service\src\main\webapp" relative="/" />
+        </webroots>
+      </configuration>
+    </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/../../../movies-service/build/classes/main" />
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../../movies-service/out/production/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../movies-service/src/main">
       <sourceFolder url="file://$MODULE_DIR$/../../../movies-service/src/main/java" isTestSource="false" />

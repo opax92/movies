@@ -1,7 +1,6 @@
 package pl.sebastianopacki.movies.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.istack.internal.NotNull;
 
 import java.io.Serializable;
 import java.util.Date;
