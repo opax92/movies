@@ -1,0 +1,57 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Gradle : pl.sebastian-opacki : movies-repository-1.0-SNAPSHOT.war (exploded)">
+    <output-path>$PROJECT_DIR$/movies-repository/build/libs/exploded/movies-repository-1.0-SNAPSHOT.war</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$">
+        <manifest>TWFuaWZlc3QtVmVyc2lvbjogMS4wDQoNCg==</manifest>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/movies-repository/build/libs/exploded/movies-repository-1.0-SNAPSHOT.war/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="movies-repository_main/web/Web Gradle : movies-repository-1.0-SNAPSHOT.war" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="movies-repository_main" />
+          <element id="dir-copy" path="$PROJECT_DIR$/movies-repository/out/production/resources" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Gradle: org.hibernate:hibernate-core:5.0.12.Final" />
+          <element id="library" level="project" name="Gradle: org.hibernate:hibernate-entitymanager:5.0.12.Final" />
+          <element id="archive" name="pl.sebastian-opacki-movies-service-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="movies-service_main" />
+            <element id="dir-copy" path="$PROJECT_DIR$/movies-service/out/production/resources" />
+          </element>
+          <element id="library" level="project" name="Gradle: org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-orm:4.3.13.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.data:spring-data-jpa:1.11.9.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.aspectj:aspectjweaver:1.8.13" />
+          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.9.3" />
+          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.3.3" />
+          <element id="library" level="project" name="Gradle: javax.transaction:javax.transaction-api:1.2" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-beans:4.3.13.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.3.13.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.3.13.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-tx:4.3.13.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework.data:spring-data-commons:1.13.9.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.3.13.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-aop:4.3.13.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.aspectj:aspectjrt:1.8.12" />
+          <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.7.25" />
+          <element id="library" level="project" name="Gradle: org.slf4j:jcl-over-slf4j:1.7.25" />
+          <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.3.13.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.jboss.logging:jboss-logging:3.3.0.Final" />
+          <element id="library" level="project" name="Gradle: org.javassist:javassist:3.18.1-GA" />
+          <element id="library" level="project" name="Gradle: antlr:antlr:2.7.7" />
+          <element id="library" level="project" name="Gradle: org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1.1" />
+          <element id="library" level="project" name="Gradle: org.jboss:jandex:2.0.0.Final" />
+          <element id="library" level="project" name="Gradle: dom4j:dom4j:1.6.1" />
+          <element id="library" level="project" name="Gradle: org.hibernate.common:hibernate-commons-annotations:5.0.1.Final" />
+          <element id="library" level="project" name="Gradle: xml-apis:xml-apis:1.0.b2" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
