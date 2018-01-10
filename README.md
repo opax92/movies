@@ -9,7 +9,7 @@ Simple application for managing movies.
 ```
 {
 	"title": "Shrek",
-	"rate": 7.8,
+	"rating": 7.8,
 	"actors": ["Mike Myers", "Eddie Murphy"],
 	"director": "Andrew Adamson"
 }
@@ -24,7 +24,7 @@ Simple application for managing movies.
 
 * to get all movies sorted by rating please use GET request.
   
-## Responses for add movie:
+## Responses for add movie request:
   * success - When movie has been added correct then true, if not then false
   * movieFailureResultReason - Occurs only when failure, possible causes of failure:
   * * INVALID_TITLE_MOVIE - Title must have at least 3 characters up to 50 and can contain only letters.
