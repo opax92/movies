@@ -27,6 +27,6 @@ Simple application for managing movies.
 ## Responses for add movie:
   * success - when movie has been added correct then true, if not then false
   * movieFailureResultReason - occurs only when failure, possible mistakes of failured:
-  * INVALID_TITLE_MOVIE - Title must have at least 3 characters up to 50 and can contain only letters
-  * MOVIE_WITH_TITLE_ALREADY_EXISTS - Occurs when you try add movie, when the same title already exists
+  * * INVALID_TITLE_MOVIE - Title must have at least 3 characters up to 50 and can contain only letters
+  * * MOVIE_WITH_TITLE_ALREADY_EXISTS - Occurs when you try add movie, when the same title already exists
   
