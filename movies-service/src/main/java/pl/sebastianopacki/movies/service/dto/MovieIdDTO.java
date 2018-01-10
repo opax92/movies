@@ -1,4 +1,4 @@
-package pl.sebastianopacki.movies.service.domain;
+package pl.sebastianopacki.movies.service.dto;
 
 import java.io.Serializable;
 
@@ -17,9 +17,5 @@ public class MovieIdDTO implements Serializable{
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 }

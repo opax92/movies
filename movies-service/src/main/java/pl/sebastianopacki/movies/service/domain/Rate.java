@@ -23,10 +23,6 @@ class Rate implements Serializable {
         return rate;
     }
 
-    public void setRate(Double rate) {
-        this.rate = rate;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

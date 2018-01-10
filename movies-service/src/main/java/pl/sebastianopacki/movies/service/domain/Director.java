@@ -15,11 +15,11 @@ class Director implements Serializable {
     private Director() {
     }
 
-    public Director(String director) {
+    Director(String director) {
         this.director = director;
     }
 
-    public String getDirector() {
+    String getDirector() {
         return director;
     }
 

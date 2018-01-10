@@ -181,15 +181,17 @@ public class MoviesServiceTest {
         }
 
         private void exists() {
-            MovieDTO movie = new MovieDTO(title, rate, actors, director, new Date());
-            List<MovieDTO> allMoviesSortedByRating = moviesService.findAllMoviesSortedByRating();
-            assertTrue(allMoviesSortedByRating.contains(movie));
+            assertTrue(allMoviesContainsTestedMovie());
         }
 
         private void notExists() {
+            assertFalse(allMoviesContainsTestedMovie());
+        }
+
+        private boolean allMoviesContainsTestedMovie(){
             MovieDTO movie = new MovieDTO(title, rate, actors, director, new Date());
-            List<MovieDTO> allMoviesSortedByRating = moviesService.findAllMoviesSortedByRating();//TODO copy paste
-            assertFalse(allMoviesSortedByRating.contains(movie));
+            List<MovieDTO> allMoviesSortedByRating = moviesService.findAllMoviesSortedByRating();
+            return allMoviesSortedByRating.contains(movie);
         }
     }
 }

@@ -12,11 +12,11 @@ import java.util.Set;
 @Embeddable
  class Actors {
 
-    private Actors() {
-    }
-
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> actors;
+
+    private Actors() {
+    }
 
     Actors(Set<String> actors) {
         this.actors = actors;

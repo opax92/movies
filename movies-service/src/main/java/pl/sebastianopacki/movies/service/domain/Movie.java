@@ -17,12 +17,14 @@ public class Movie {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt = new Date();
+
     private Title title;
     private Rate rate;
     private Actors actors;
     private Director director;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt = new Date();
 
     public Movie() {
     }
@@ -55,24 +57,8 @@ public class Movie {
         return Optional.ofNullable(director);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    private void setTitle(Title title) {
-        this.title = title;
-    }
-
-    private void setRate(Rate rate) {
-        this.rate = rate;
-    }
-
-    private void setActors(Actors actors) {
-        this.actors = actors;
-    }
-
-    private void setDirector(Director director) {
-        this.director = director;
+    Date getCreatedAt() {
+        return createdAt;
     }
 
     @Override
@@ -90,9 +76,5 @@ public class Movie {
     @Override
     public int hashCode() {
         return Objects.hash(title, rate, actors, director);
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
     }
 }

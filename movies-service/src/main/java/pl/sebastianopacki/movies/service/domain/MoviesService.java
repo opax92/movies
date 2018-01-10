@@ -3,6 +3,7 @@ package pl.sebastianopacki.movies.service.domain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sebastianopacki.movies.service.dto.MovieDTO;
+import pl.sebastianopacki.movies.service.dto.MovieIdDTO;
 import pl.sebastianopacki.movies.service.exceptions.InvalidTitleMovieException;
 import pl.sebastianopacki.movies.service.result.MovieResult;
 import pl.sebastianopacki.movies.service.result.MovieResultFailure;
@@ -22,16 +23,16 @@ import static pl.sebastianopacki.movies.service.result.MovieFailureResultReason.
  */
 @Service
 @Transactional
-public class MoviesService {
+class MoviesService {
 
     private final MoviesRepository moviesRepository;
 
     @Autowired
-    public MoviesService(MoviesRepository moviesRepository) {
+    MoviesService(MoviesRepository moviesRepository) {
         this.moviesRepository = moviesRepository;
     }
 
-    public MovieResult createMovie(MovieDTO movieDTO) {
+    MovieResult createMovie(MovieDTO movieDTO) {
         Movie movie;
         try {
             movie = new Movie(movieDTO);
@@ -47,7 +48,7 @@ public class MoviesService {
         return new MovieResultSuccess();
     }
 
-    public List<MovieDTO> findAllMoviesSortedByRating() {
+    List<MovieDTO> findAllMoviesSortedByRating() {
         List<Movie> allMovies = moviesRepository.findAllMovies();
         allMovies.sort(Comparator.comparing(o -> o.getRate().get().getRate()));
         Collections.reverse(allMovies);
@@ -55,7 +56,7 @@ public class MoviesService {
         return convertToDTO(allMovies);
     }
 
-    public void deleteMovie(MovieIdDTO movieIdDTO) {
+    void deleteMovie(MovieIdDTO movieIdDTO) {
         moviesRepository.deleteMovie(movieIdDTO.getId());
     }
 
@@ -64,23 +65,23 @@ public class MoviesService {
     }
 
     private MovieDTO convertToDTO(Movie movie) {
-        MovieDTO result = new MovieDTO();
-        result.setId(movie.getId());
-        result.setTitle(movie.getTitle().getTitle());
-        result.setActors(movie.getActors().getActors());
-        result.setCreatedAt(movie.getCreatedAt());
-        result.setRate(movie.getRate().orElse(new Rate(0.0)).getRate());
-        result.setDirector(movie.getDirector().orElse(new Director("")).getDirector());
+        MovieDTO movieDTO = new MovieDTO();
+        movieDTO.setId(movie.getId());
+        movieDTO.setTitle(movie.getTitle().getTitle());
+        movieDTO.setActors(movie.getActors().getActors());
+        movieDTO.setCreatedAt(movie.getCreatedAt());
+        movieDTO.setRate(movie.getRate().orElse(new Rate(0.0)).getRate());
+        movieDTO.setDirector(movie.getDirector().orElse(new Director("")).getDirector());
 
-        return result;
+        return movieDTO;
     }
 
     private List<MovieDTO> convertToDTO(List<Movie> movies) {
-        List<MovieDTO> result = new ArrayList<>();
+        List<MovieDTO> moviesDTO = new ArrayList<>();
         for (Movie movie : movies) {
-            result.add(convertToDTO(movie));
+            moviesDTO.add(convertToDTO(movie));
         }
 
-        return result;
+        return moviesDTO;
     }
 }
