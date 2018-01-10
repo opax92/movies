@@ -1,8 +1,5 @@
 package pl.sebastianopacki.movies.service.domain;
 
-import org.springframework.stereotype.Component;
-import pl.sebastianopacki.movies.service.exceptions.InvalidTitleMovieException;
-
 /**
  * Created by seb on 10.01.18.
  */
