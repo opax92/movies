@@ -5,5 +5,5 @@ package pl.sebastianopacki.movies.service.domain;
  */
 interface TitleValidator {
 
-    void validateTitle(String title);
+    boolean validateTitle(String title);
 }

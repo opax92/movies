@@ -9,7 +9,6 @@ import pl.sebastianopacki.movies.service.result.MovieResult;
 import pl.sebastianopacki.movies.service.result.MovieResultFailure;
 import pl.sebastianopacki.movies.service.result.MovieResultSuccess;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -22,7 +21,6 @@ import static pl.sebastianopacki.movies.service.result.MovieFailureResultReason.
  * Created by seb on 05.01.18.
  */
 @Service
-@Transactional
 class MoviesService {
 
     private final MoviesRepository moviesRepository;
@@ -45,15 +43,16 @@ class MoviesService {
         }
 
         moviesRepository.createMovie(movie);
+
         return new MovieResultSuccess();
     }
 
     List<MovieDTO> findAllMoviesSortedByRating() {
-        List<Movie> allMovies = moviesRepository.findAllMovies();
-        allMovies.sort(Comparator.comparing(o -> o.getRate().get().getRate()));
-        Collections.reverse(allMovies);
+        List<Movie> allMoviesSortedByRating = moviesRepository.findAllMovies();
+        allMoviesSortedByRating.sort(Comparator.comparing(o -> o.getRating().get().getRate()));
+        Collections.reverse(allMoviesSortedByRating);
 
-        return convertToDTO(allMovies);
+        return convertToDTO(allMoviesSortedByRating);
     }
 
     void deleteMovie(MovieIdDTO movieIdDTO) {
@@ -70,7 +69,7 @@ class MoviesService {
         movieDTO.setTitle(movie.getTitle().getTitle());
         movieDTO.setActors(movie.getActors().getActors());
         movieDTO.setCreatedAt(movie.getCreatedAt());
-        movieDTO.setRate(movie.getRate().orElse(new Rate(0.0)).getRate());
+        movieDTO.setRating(movie.getRating().orElse(new Rating(0.0)).getRate());
         movieDTO.setDirector(movie.getDirector().orElse(new Director("")).getDirector());
 
         return movieDTO;

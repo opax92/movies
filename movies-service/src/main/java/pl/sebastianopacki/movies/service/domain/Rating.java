@@ -8,14 +8,14 @@ import java.util.Objects;
  * Created by seb on 05.01.18.
  */
 @Embeddable
-class Rate implements Serializable {
+class Rating implements Serializable {
 
     private Double rate;
 
-    private Rate() {
+    private Rating() {
     }
 
-    Rate(Double rate) {
+    Rating(Double rate) {
         this.rate = rate;
     }
 
@@ -27,8 +27,8 @@ class Rate implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Rate rate1 = (Rate) o;
-        return Objects.equals(rate, rate1.rate);
+        Rating rating1 = (Rating) o;
+        return Objects.equals(rate, rating1.rate);
     }
 
     @Override

@@ -6,12 +6,14 @@ import pl.sebastianopacki.movies.service.dto.MovieDTO;
 import pl.sebastianopacki.movies.service.dto.MovieIdDTO;
 import pl.sebastianopacki.movies.service.result.MovieResult;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * Created by seb on 10.01.18.
  */
 @Service
+@Transactional
 public class MoviesFacade {
 
     private final MoviesService moviesService;

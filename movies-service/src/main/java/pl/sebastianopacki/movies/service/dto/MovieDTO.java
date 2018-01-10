@@ -14,7 +14,7 @@ public class MovieDTO implements Serializable{
 
     private Integer id;
     private String title;
-    private Double rate;
+    private Double rating;
     private Set<String> actors;
     private String director;
 
@@ -23,9 +23,9 @@ public class MovieDTO implements Serializable{
 
     public MovieDTO(){}
 
-    public MovieDTO(String title, Double rate, Set<String> actors, String director, Date createdAt) {
+    public MovieDTO(String title, Double rating, Set<String> actors, String director, Date createdAt) {
         this.title = title;
-        this.rate = rate;
+        this.rating = rating;
         this.actors = actors;
         this.director = director;
         this.createdAt = createdAt;
@@ -55,12 +55,12 @@ public class MovieDTO implements Serializable{
         this.title = title;
     }
 
-    public Double getRate() {
-        return rate;
+    public Double getRating() {
+        return rating;
     }
 
-    public void setRate(Double rate) {
-        this.rate = rate;
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
 
     public Set<String> getActors() {
@@ -86,13 +86,13 @@ public class MovieDTO implements Serializable{
         MovieDTO movieDTO = (MovieDTO) o;
         return
                 Objects.equals(title, movieDTO.title) &&
-                Objects.equals(rate, movieDTO.rate) &&
+                Objects.equals(rating, movieDTO.rating) &&
                 Objects.equals(actors, movieDTO.actors) &&
                 Objects.equals(director, movieDTO.director);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, rate, actors, director);
+        return Objects.hash(title, rating, actors, director);
     }
 }

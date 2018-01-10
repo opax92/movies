@@ -11,7 +11,6 @@ import java.util.Optional;
  * Created by seb on 05.01.18.
  */
 @Entity
-@Table(name="movie_tbl")
 public class Movie {
 
     @Id
@@ -22,7 +21,7 @@ public class Movie {
     private Date createdAt = new Date();
 
     private Title title;
-    private Rate rate;
+    private Rating rating;
     private Actors actors;
     private Director director;
 
@@ -31,8 +30,8 @@ public class Movie {
 
     Movie(MovieDTO movieDTO){
         this.id = movieDTO.getId();
-        this.title = new Title(movieDTO.getTitle());
-        this.rate = new Rate(movieDTO.getRate());
+        this.title = new Title(movieDTO.getTitle(), new TitleValidatorImpl());
+        this.rating = new Rating(movieDTO.getRating());
         this.actors = new Actors(movieDTO.getActors());
         this.director = new Director(movieDTO.getDirector());
     }
@@ -45,8 +44,8 @@ public class Movie {
         return title;
     }
 
-    Optional<Rate> getRate() {
-        return Optional.ofNullable(rate);
+    Optional<Rating> getRating() {
+        return Optional.ofNullable(rating);
     }
 
     Actors getActors() {
@@ -68,13 +67,13 @@ public class Movie {
         Movie movie = (Movie) o;
         return
                 Objects.equals(title, movie.title) &&
-                Objects.equals(rate, movie.rate) &&
+                Objects.equals(rating, movie.rating) &&
                 Objects.equals(actors, movie.actors) &&
                 Objects.equals(director, movie.director);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, rate, actors, director);
+        return Objects.hash(title, rating, actors, director);
     }
 }

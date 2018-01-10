@@ -1,8 +1,11 @@
 package pl.sebastianopacki.movies.service.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.sebastianopacki.movies.service.exceptions.InvalidTitleMovieException;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -17,12 +20,11 @@ public class Title implements Serializable {
     private Title() {
     }
 
-    Title(String title) {
-        if(Objects.isNull(title)){
+    Title(String title, TitleValidator titleValidator) {
+        if(Objects.isNull(title) || !titleValidator.validateTitle(title)){
             throw new InvalidTitleMovieException();
         }
-        TitleValidator titleValidator = new TitleValidatorImpl(title);
-        titleValidator.validateTitle(title);
+
         this.title = title;
     }
 
@@ -41,29 +43,5 @@ public class Title implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(title);
-    }
-
-    private static class TitleValidatorImpl implements TitleValidator {
-
-        private final String titleToValidate;
-
-        private TitleValidatorImpl(String titleToValidate) {
-            this.titleToValidate = titleToValidate;
-        }
-
-        @Override
-        public void validateTitle(String title) {
-            if (!titleContainsOnlyLetters() || !titleHasAtLeast3CharactersUpTo50()) {
-                throw new InvalidTitleMovieException();
-            }
-        }
-
-        private boolean titleHasAtLeast3CharactersUpTo50() {
-            return titleToValidate.length() >= 3 && titleToValidate.length() <= 50;
-        }
-
-        private boolean titleContainsOnlyLetters() {
-            return titleToValidate.chars().allMatch(Character::isLetter);
-        }
     }
 }
