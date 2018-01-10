@@ -5,6 +5,7 @@ package pl.sebastianopacki.movies.repository.configuration;
  */
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -23,6 +24,15 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 public class HibernateConfiguration {
+
+    @Value("${spring.datasource.url}")
+    private String dataSourceUrl;
+
+    @Value("${spring.datasource.username}")
+    private String dataSourceUserName;
+
+    @Value("${spring.datasource.dataSourcePassword}")
+    private String dataSourcePassword;
 
     @Bean
     public HibernateTransactionManager transactionManager() {
@@ -47,9 +57,9 @@ public class HibernateConfiguration {
 
     private void setConnectionProperties(DriverManagerDataSource dataSource) {
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/movies");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("postgres");
+        dataSource.setUrl(dataSourceUrl);
+        dataSource.setUsername(dataSourceUserName);
+        dataSource.setPassword(dataSourcePassword);
     }
 
     private Properties hibernateProperties() {
