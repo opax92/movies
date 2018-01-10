@@ -31,7 +31,7 @@ public class HibernateConfiguration {
     @Value("${spring.datasource.username}")
     private String dataSourceUserName;
 
-    @Value("${spring.datasource.dataSourcePassword}")
+    @Value("${spring.datasource.password}")
     private String dataSourcePassword;
 
     @Bean
