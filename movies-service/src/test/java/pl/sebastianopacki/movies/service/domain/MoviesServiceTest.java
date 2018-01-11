@@ -2,7 +2,7 @@ package pl.sebastianopacki.movies.service.domain;
 
 import pl.sebastianopacki.movies.service.dto.*;
 import org.junit.Test;
-import pl.sebastianopacki.movies.service.exceptions.IncorrectMovieId;
+import pl.sebastianopacki.movies.service.exceptions.IncorrectMovieIdException;
 import pl.sebastianopacki.movies.service.result.MovieResult;
 import pl.sebastianopacki.movies.service.result.MovieResultFailure;
 import pl.sebastianopacki.movies.service.result.MovieResultSuccess;
@@ -97,7 +97,7 @@ public class MoviesServiceTest {
         movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "dwa").notExists();
     }
 
-    @Test(expected = IncorrectMovieId.class)
+    @Test(expected = IncorrectMovieIdException.class)
     public void removeNotExistingMovie(){
         //given
         movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "dwa").create();

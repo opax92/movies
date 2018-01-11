@@ -6,7 +6,7 @@ import pl.sebastianopacki.movies.service.dto.MovieDTO;
 import pl.sebastianopacki.movies.service.dto.MovieIdDTO;
 import pl.sebastianopacki.movies.service.exceptions.InvalidMovieRatingException;
 import pl.sebastianopacki.movies.service.exceptions.MovieException;
-import pl.sebastianopacki.movies.service.exceptions.IncorrectMovieId;
+import pl.sebastianopacki.movies.service.exceptions.IncorrectMovieIdException;
 import pl.sebastianopacki.movies.service.result.MovieFailureResultReason;
 import pl.sebastianopacki.movies.service.result.MovieResult;
 import pl.sebastianopacki.movies.service.result.MovieResultFailure;
@@ -56,7 +56,7 @@ class MoviesService {
 
     void deleteMovie(MovieIdDTO movieIdDTO) {
         if(nullMovieId(movieIdDTO) || movieWithIdNotExists(movieIdDTO)) {
-            throw new IncorrectMovieId();
+            throw new IncorrectMovieIdException();
         }
 
         moviesRepository.deleteMovie(movieIdDTO.getId());
@@ -67,7 +67,7 @@ class MoviesService {
     }
 
     private boolean movieWithIdNotExists(MovieIdDTO movieIdDTO){
-        return moviesRepository.findAllMovies().stream().noneMatch(movie -> movie.getId().equals(movieIdDTO.getId()));
+        return !moviesRepository.findMovieById(movieIdDTO.getId()).isPresent();
     }
 
     private boolean nullMovieId(MovieIdDTO movieIdDTO){

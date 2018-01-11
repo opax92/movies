@@ -3,11 +3,13 @@ package pl.sebastianopacki.movies.view.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageConversionException;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 import pl.sebastianopacki.movies.service.domain.MoviesFacade;
 import pl.sebastianopacki.movies.service.dto.MovieDTO;
 import pl.sebastianopacki.movies.service.dto.MovieIdDTO;
-import pl.sebastianopacki.movies.service.exceptions.IncorrectMovieId;
+import pl.sebastianopacki.movies.service.exceptions.IncorrectMovieIdException;
 import pl.sebastianopacki.movies.service.result.MovieResult;
 
 import java.util.List;
@@ -43,10 +45,5 @@ public class MoviesController {
     @RequestMapping(method = DELETE)
     public void deleteMovie(@RequestBody MovieIdDTO movieId) {
         moviesFacade.deleteMovie(movieId);
-    }
-
-    @ExceptionHandler(IncorrectMovieId.class)
-    public ResponseEntity handle() {
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

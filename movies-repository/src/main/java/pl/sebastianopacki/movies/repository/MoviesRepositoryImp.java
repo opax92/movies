@@ -40,7 +40,15 @@ public class MoviesRepositoryImp implements MoviesRepository {
         query.setParameter("title", title);
 
         return Optional.ofNullable((Movie) query.uniqueResult());
-        //todo id to load is required for loading
+    }
+
+    @Override
+    public Optional<Movie> findMovieById(Integer id) {
+        Session currentSession = postgresqlHibernateSessionFactory.getCurrentSession();
+        Query query = currentSession.createQuery("from Movie as movie where movie.id = :id");
+        query.setParameter("id", id);
+
+        return Optional.ofNullable((Movie) query.uniqueResult());
     }
 
     public void deleteMovie(Integer movieId) {

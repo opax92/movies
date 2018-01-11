@@ -22,6 +22,11 @@ public class MockMoviesRepository implements MoviesRepository {
     }
 
     @Override
+    public Optional<Movie> findMovieById(Integer id) {
+        return movies.stream().filter(movie -> movie.getId().equals(id)).findAny();
+    }
+
+    @Override
     public void deleteMovie(Integer id) {
         movies.removeIf((Movie m) -> m.getId().equals(id));
     }

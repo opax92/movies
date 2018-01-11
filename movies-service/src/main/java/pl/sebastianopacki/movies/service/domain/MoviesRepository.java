@@ -12,6 +12,8 @@ public interface MoviesRepository {
 
     Optional<Movie> findMovieByTitle(Title title);
 
+    Optional<Movie> findMovieById(Integer id);
+
     void deleteMovie(Integer id);
 
     void createMovie(Movie movie);
