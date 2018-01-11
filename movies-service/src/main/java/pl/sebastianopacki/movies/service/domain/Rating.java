@@ -1,5 +1,7 @@
 package pl.sebastianopacki.movies.service.domain;
 
+import pl.sebastianopacki.movies.service.exceptions.InvalidMovieRatingException;
+
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
@@ -10,17 +12,20 @@ import java.util.Objects;
 @Embeddable
 class Rating implements Serializable {
 
-    private Double rate;
+    private Double rating;
 
     private Rating() {
     }
 
-    Rating(Double rate) {
-        this.rate = rate;
+    Rating(Double rating) {
+        if(Objects.isNull(rating)){
+            throw new InvalidMovieRatingException();
+        }
+        this.rating = rating;
     }
 
     Double getRate() {
-        return rate;
+        return rating;
     }
 
     @Override
@@ -28,11 +33,11 @@ class Rating implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rating rating1 = (Rating) o;
-        return Objects.equals(rate, rating1.rate);
+        return Objects.equals(rating, rating1.rating);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rate);
+        return Objects.hash(rating);
     }
 }

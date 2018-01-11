@@ -1,13 +1,13 @@
 package pl.sebastianopacki.movies.view.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import pl.sebastianopacki.movies.service.domain.MoviesFacade;
 import pl.sebastianopacki.movies.service.dto.MovieDTO;
 import pl.sebastianopacki.movies.service.dto.MovieIdDTO;
+import pl.sebastianopacki.movies.service.exceptions.IncorrectMovieId;
 import pl.sebastianopacki.movies.service.result.MovieResult;
 
 import java.util.List;
@@ -30,18 +30,23 @@ public class MoviesController {
 
     @RequestMapping(method = GET)
     @ResponseBody
-    public List<MovieDTO> findAllMovies(){
+    public List<MovieDTO> findAllMovies() {
         return moviesFacade.findAllMoviesSortedByRating();
     }
 
     @RequestMapping(method = PUT)
     @ResponseBody
-    public MovieResult createMovie(@RequestBody MovieDTO movieDTO){
+    public MovieResult createMovie(@RequestBody MovieDTO movieDTO) {
         return moviesFacade.createMovie(movieDTO);
     }
 
     @RequestMapping(method = DELETE)
-    public void deleteMovie(@RequestBody MovieIdDTO movieId){
+    public void deleteMovie(@RequestBody MovieIdDTO movieId) {
         moviesFacade.deleteMovie(movieId);
+    }
+
+    @ExceptionHandler(IncorrectMovieId.class)
+    public ResponseEntity handle() {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

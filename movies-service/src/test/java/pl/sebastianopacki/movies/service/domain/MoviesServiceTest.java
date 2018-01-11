@@ -2,6 +2,7 @@ package pl.sebastianopacki.movies.service.domain;
 
 import pl.sebastianopacki.movies.service.dto.*;
 import org.junit.Test;
+import pl.sebastianopacki.movies.service.exceptions.IncorrectMovieId;
 import pl.sebastianopacki.movies.service.result.MovieResult;
 import pl.sebastianopacki.movies.service.result.MovieResultFailure;
 import pl.sebastianopacki.movies.service.result.MovieResultSuccess;
@@ -96,6 +97,21 @@ public class MoviesServiceTest {
         movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "dwa").notExists();
     }
 
+    @Test(expected = IncorrectMovieId.class)
+    public void removeNotExistingMovie(){
+        //given
+        movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "dwa").create();
+        addMovies();
+
+        //when
+        removeMovieWithId(2);
+
+        //then
+        assertResultSuccess();
+        assertCountMovies(0);
+        movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "dwa").notExists();
+    }
+
     @Test
     public void getAllMoviesSortedByRating() {
         //given
@@ -110,6 +126,19 @@ public class MoviesServiceTest {
         //then
         assertResultSuccess();
         assertMoviesOrderByTitle("titleThree", "titleFour", "title", "titleTwo");
+    }
+
+    @Test
+    public void addMovieWithoutRating(){
+        //given
+        movieTitle("titleFour").withDirector("director3").withActors("one3", "dwa", "tree").create();
+
+        //when
+        addMovies();
+
+        //then
+        assertResultFailure();
+        assertCountMovies(0);
     }
 
     private void assertMoviesOrderByTitle(String... titles) {
@@ -148,7 +177,7 @@ public class MoviesServiceTest {
 
     private class MoviesConfiguration {
         private String title;
-        private Double rate;
+        private Double rating;
         private String director;
         private Set<String> actors = new HashSet<>();
 
@@ -157,7 +186,7 @@ public class MoviesServiceTest {
         }
 
         private MoviesConfiguration withRating(Double rating) {
-            rate = rating;
+            this.rating = rating;
 
             return this;
         }
@@ -175,7 +204,7 @@ public class MoviesServiceTest {
         }
 
         private void create() {
-            MovieDTO movie = new MovieDTO(title, rate, actors, director, new Date());
+            MovieDTO movie = new MovieDTO(title, rating, actors, director, new Date());
             movie.setId(currentId++);
             movies.add(movie);
         }
@@ -189,7 +218,7 @@ public class MoviesServiceTest {
         }
 
         private boolean allMoviesContainsTestedMovie(){
-            MovieDTO movie = new MovieDTO(title, rate, actors, director, new Date());
+            MovieDTO movie = new MovieDTO(title, rating, actors, director, new Date());
             List<MovieDTO> allMoviesSortedByRating = moviesService.findAllMoviesSortedByRating();
             return allMoviesSortedByRating.contains(movie);
         }

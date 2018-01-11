@@ -4,17 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sebastianopacki.movies.service.dto.MovieDTO;
 import pl.sebastianopacki.movies.service.dto.MovieIdDTO;
-import pl.sebastianopacki.movies.service.exceptions.InvalidTitleMovieException;
+import pl.sebastianopacki.movies.service.exceptions.InvalidMovieRatingException;
+import pl.sebastianopacki.movies.service.exceptions.MovieException;
+import pl.sebastianopacki.movies.service.exceptions.IncorrectMovieId;
+import pl.sebastianopacki.movies.service.result.MovieFailureResultReason;
 import pl.sebastianopacki.movies.service.result.MovieResult;
 import pl.sebastianopacki.movies.service.result.MovieResultFailure;
 import pl.sebastianopacki.movies.service.result.MovieResultSuccess;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
-import static pl.sebastianopacki.movies.service.result.MovieFailureResultReason.INVALID_TITLE_MOVIE;
 import static pl.sebastianopacki.movies.service.result.MovieFailureResultReason.MOVIE_WITH_TITLE_ALREADY_EXISTS;
 
 /**
@@ -34,8 +33,8 @@ class MoviesService {
         Movie movie;
         try {
             movie = new Movie(movieDTO);
-        } catch (InvalidTitleMovieException e) {
-            return new MovieResultFailure(INVALID_TITLE_MOVIE);
+        } catch (MovieException e) {
+            return new MovieResultFailure(MovieFailureResultReason.valueOf(e.getMessage()));
         }
 
         if (movieWithThatTitleAlreadyExists(movie)) {
@@ -49,18 +48,33 @@ class MoviesService {
 
     List<MovieDTO> findAllMoviesSortedByRating() {
         List<Movie> allMoviesSortedByRating = moviesRepository.findAllMovies();
-        allMoviesSortedByRating.sort(Comparator.comparing(o -> o.getRating().get().getRate()));
+        allMoviesSortedByRating.sort(Comparator.comparing(o -> o.getRating().orElseThrow(InvalidMovieRatingException::new).getRate()));
         Collections.reverse(allMoviesSortedByRating);
 
         return convertToDTO(allMoviesSortedByRating);
     }
 
     void deleteMovie(MovieIdDTO movieIdDTO) {
+        if(nullMovieId(movieIdDTO) || movieWithIdNotExists(movieIdDTO)) {
+            throw new IncorrectMovieId();
+        }
+
         moviesRepository.deleteMovie(movieIdDTO.getId());
     }
 
     private boolean movieWithThatTitleAlreadyExists(Movie movie){
         return moviesRepository.findMovieByTitle(movie.getTitle()).isPresent();
+    }
+
+    private boolean movieWithIdNotExists(MovieIdDTO movieIdDTO){
+        return moviesRepository.findAllMovies().stream().noneMatch(movie -> movie.getId().equals(movieIdDTO.getId()));
+    }
+
+    private boolean nullMovieId(MovieIdDTO movieIdDTO){
+        if(Objects.isNull(movieIdDTO) || Objects.isNull(movieIdDTO.getId())){
+            return true;
+        }
+        return false;
     }
 
     private MovieDTO convertToDTO(Movie movie) {

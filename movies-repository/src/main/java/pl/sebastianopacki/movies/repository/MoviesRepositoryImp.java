@@ -40,6 +40,7 @@ public class MoviesRepositoryImp implements MoviesRepository {
         query.setParameter("title", title);
 
         return Optional.ofNullable((Movie) query.uniqueResult());
+        //todo id to load is required for loading
     }
 
     public void deleteMovie(Integer movieId) {

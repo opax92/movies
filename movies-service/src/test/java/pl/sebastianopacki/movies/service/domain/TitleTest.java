@@ -58,7 +58,7 @@ public class TitleTest {
     }
 
     private void addTitle() {
-        title = new Title(rowTitle);
+        title = new Title(rowTitle, new TitleValidatorImpl());
     }
 
     private void titleCreatedSuccess() {
