@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS movie_actors CASCADE;
 CREATE TABLE movie_actors
 (
    movie_id  integer        NOT NULL,
-   actors    varchar(255)
+   actors    text
 );
 
 DROP TABLE IF EXISTS movie CASCADE;
