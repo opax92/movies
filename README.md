@@ -1,18 +1,18 @@
 # Movies
 
-Simple application for managing movies. You can add with details like your rating, actors and director information, you can also managing added movies(delete, get all sorted by rating)
+Simple application for managing movies. You can add movies with details like your rating, actors and director information. You can also managing added earlir movies(delete, get all movies sorted by rating).
 
 ## Installation
 
-Create database in Postgres and run migration which is in file 'postgres_database_migration.sql'
-Create 'config' directory in root path project and create inside 'config' directore file application.properties with database credential properties: 
+Create database in Postgres and run migration which is in file 'postgres_database_migration.sql'.
+Create 'config' directory in root path project and create inside 'config' file application.properties with database credential properties: 
 
 ```
 spring.datasource.url =
 spring.datasource.username =
 spring.datasource.password =
 ```
-fill correctly these properties.
+fill correctly above properties.
 
 ## How to use REST endpoints?
 Controller is mapping request on "/movies", for example http://sebastian.opacki.pl/movies
