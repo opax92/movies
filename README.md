@@ -36,6 +36,8 @@ Controller is mapping request on "/movies", for example http://sebastian.opacki.
 }
 ```
 
+When ID hasn't exists then 404 code status will be returned. When ID has wrong format(for example too long) then 400 code status will be returned. 
+
 * to get all movies sorted by rating please use GET request.
   
 ## Responses for add movie request:
