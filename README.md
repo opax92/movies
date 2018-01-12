@@ -4,9 +4,9 @@ Simple application for managing movies. You can add movies with details like you
 
 ## Installation
 
-Create Postgres database and run migration from file 'postgres_database_migration.sql'.
-Create 'config' directory in root project path.
-Create in 'config' directory file 'application.properties' with database credential properties: 
+* Create Postgres database and run migration from file 'postgres_database_migration.sql'.
+* Create 'config' directory in root project path.
+* Create in 'config' directory file 'application.properties' with database credential properties: 
 
 ```
 spring.datasource.url =
