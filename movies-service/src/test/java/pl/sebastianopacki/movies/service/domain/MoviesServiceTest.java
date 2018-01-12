@@ -136,19 +136,6 @@ public class MoviesServiceTest {
         assertCountMovies(0);
     }
 
-    @Test
-    public void addMovieWithoutRatsing() {
-        //given
-        movieTitle("The Shawshank Redemption").withDirector("director3").withActors("one3", "dwa", "tree").create();
-
-        //when
-        addMovies();
-
-        //then
-        assertResultSuccess();
-        assertCountMovies(1);
-    }
-
     private void assertMoviesOrderByTitle(String... titles) {
         List<MovieDTO> allMoviesSortedByRating = moviesService.findAllMoviesSortedByRating();
 

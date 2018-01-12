@@ -15,12 +15,6 @@ class TitleValidatorImpl implements TitleValidator {
     }
 
     private boolean titleContainsOnlyLetters(String titleToValidate) {
-        for(int i = 0; i < titleToValidate.length(); ++i){
-            Character character = titleToValidate.charAt(i);
-            if(!Character.isLetter(character) && !Character.isSpaceChar(character)){
-                return false;
-            }
-        }
-        return true;
+        return titleToValidate.chars().allMatch(Character::isLetter);
     }
 }
