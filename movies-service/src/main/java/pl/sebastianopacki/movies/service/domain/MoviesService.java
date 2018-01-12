@@ -51,7 +51,7 @@ class MoviesService {
         allMoviesSortedByRating.sort(Comparator.comparing(o -> o.getRating().orElseThrow(InvalidMovieRatingException::new).getRate()));
         Collections.reverse(allMoviesSortedByRating);
 
-        return convertToDTO(allMoviesSortedByRating);
+        return MovieDTOConverter.convertToDTO(allMoviesSortedByRating);
     }
 
     void deleteMovie(MovieIdDTO movieIdDTO) {
@@ -71,30 +71,6 @@ class MoviesService {
     }
 
     private boolean nullMovieId(MovieIdDTO movieIdDTO){
-        if(Objects.isNull(movieIdDTO) || Objects.isNull(movieIdDTO.getId())){
-            return true;
-        }
-        return false;
-    }
-
-    private MovieDTO convertToDTO(Movie movie) {
-        MovieDTO movieDTO = new MovieDTO();
-        movieDTO.setId(movie.getId());
-        movieDTO.setTitle(movie.getTitle().getTitle());
-        movieDTO.setActors(movie.getActors().getActors());
-        movieDTO.setCreatedAt(movie.getCreatedAt());
-        movieDTO.setRating(movie.getRating().orElse(new Rating(0.0)).getRate());
-        movieDTO.setDirector(movie.getDirector().orElse(new Director("")).getDirector());
-
-        return movieDTO;
-    }
-
-    private List<MovieDTO> convertToDTO(List<Movie> movies) {
-        List<MovieDTO> moviesDTO = new ArrayList<>();
-        for (Movie movie : movies) {
-            moviesDTO.add(convertToDTO(movie));
-        }
-
-        return moviesDTO;
+        return Objects.isNull(movieIdDTO) || Objects.isNull(movieIdDTO.getId());
     }
 }
