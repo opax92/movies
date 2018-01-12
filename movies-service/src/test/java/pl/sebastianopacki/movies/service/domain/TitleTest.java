@@ -14,7 +14,7 @@ public class TitleTest {
     private String rowTitle;
 
     @Test
-    public void simpleTitle(){
+    public void simpleTitle() {
         //given
         titleCreate("simpleTitle");
 
@@ -26,7 +26,7 @@ public class TitleTest {
     }
 
     @Test(expected = InvalidTitleMovieException.class)
-    public void titleContainsNumbers(){
+    public void titleContainsNumbers() {
         //given
         titleCreate("simple5Title");
 
@@ -35,7 +35,7 @@ public class TitleTest {
     }
 
     @Test(expected = InvalidTitleMovieException.class)
-    public void titleTooShort(){
+    public void titleTooShort() {
         //given
         titleCreate("gg");
 
@@ -45,7 +45,7 @@ public class TitleTest {
 
 
     @Test(expected = InvalidTitleMovieException.class)
-    public void titleTooLong(){
+    public void titleTooLong() {
         //given
         titleCreate("asdajsdiocaiosjdoiajsdionciaocaiocasiocasoicasiodha");
 

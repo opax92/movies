@@ -11,13 +11,13 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @ComponentScan("pl.sebastianopacki")
-public class MoviesSpringBootStarter extends SpringBootServletInitializer {
+public class MoviesSpringBootInitializer extends SpringBootServletInitializer {
     public static void main(String[] args) {
-        SpringApplication.run(MoviesSpringBootStarter.class);
+        SpringApplication.run(MoviesSpringBootInitializer.class);
     }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(MoviesSpringBootStarter.class);
+        return application.sources(MoviesSpringBootInitializer.class);
     }
 }

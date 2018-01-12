@@ -7,7 +7,7 @@ import pl.sebastianopacki.movies.service.result.MovieFailureResultReason;
  */
 public class InvalidTitleMovieException extends MovieException {
 
-    public InvalidTitleMovieException(){
+    public InvalidTitleMovieException() {
         super(MovieFailureResultReason.INVALID_MOVIE_TITLE.toString());
     }
 }

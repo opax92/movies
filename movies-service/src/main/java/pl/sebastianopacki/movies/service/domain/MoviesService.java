@@ -42,7 +42,6 @@ class MoviesService {
         }
 
         moviesRepository.createMovie(movie);
-
         return new MovieResultSuccess();
     }
 
@@ -55,22 +54,22 @@ class MoviesService {
     }
 
     void deleteMovie(MovieIdDTO movieIdDTO) {
-        if(nullMovieId(movieIdDTO) || movieWithIdNotExists(movieIdDTO)) {
+        if (nullMovieId(movieIdDTO) || movieWithIdNotExists(movieIdDTO)) {
             throw new IncorrectMovieIdException();
         }
 
         moviesRepository.deleteMovie(movieIdDTO.getId());
     }
 
-    private boolean movieWithThatTitleAlreadyExists(Movie movie){
+    private boolean movieWithThatTitleAlreadyExists(Movie movie) {
         return moviesRepository.findMovieByTitle(movie.getTitle()).isPresent();
     }
 
-    private boolean movieWithIdNotExists(MovieIdDTO movieIdDTO){
+    private boolean movieWithIdNotExists(MovieIdDTO movieIdDTO) {
         return !moviesRepository.findMovieById(movieIdDTO.getId()).isPresent();
     }
 
-    private boolean nullMovieId(MovieIdDTO movieIdDTO){
+    private boolean nullMovieId(MovieIdDTO movieIdDTO) {
         return Objects.isNull(movieIdDTO) || Objects.isNull(movieIdDTO.getId());
     }
 }

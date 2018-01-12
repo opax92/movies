@@ -7,11 +7,7 @@ class TitleValidatorImpl implements TitleValidator {
 
     @Override
     public boolean validateTitle(String title) {
-        if (titleContainsOnlyLetters(title) && titleHasAtLeast3CharactersUpTo50(title)) {
-            return true;
-        }
-
-        return false;
+        return titleContainsOnlyLetters(title) && titleHasAtLeast3CharactersUpTo50(title);
     }
 
     private boolean titleHasAtLeast3CharactersUpTo50(String titleToValidate) {

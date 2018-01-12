@@ -98,7 +98,7 @@ public class MoviesServiceTest {
     }
 
     @Test(expected = IncorrectMovieIdException.class)
-    public void removeNotExistingMovie(){
+    public void removeNotExistingMovie() {
         //given
         movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "dwa").create();
         addMovies();
@@ -124,7 +124,7 @@ public class MoviesServiceTest {
     }
 
     @Test
-    public void addMovieWithoutRating(){
+    public void addMovieWithoutRating() {
         //given
         movieTitle("titleFour").withDirector("director3").withActors("one3", "dwa", "tree").create();
 
@@ -212,7 +212,7 @@ public class MoviesServiceTest {
             assertFalse(allMoviesContainsTestedMovie());
         }
 
-        private boolean allMoviesContainsTestedMovie(){
+        private boolean allMoviesContainsTestedMovie() {
             MovieDTO movie = new MovieDTO(title, rating, actors, director, new Date());
             List<MovieDTO> allMoviesSortedByRating = moviesService.findAllMoviesSortedByRating();
             return allMoviesSortedByRating.contains(movie);

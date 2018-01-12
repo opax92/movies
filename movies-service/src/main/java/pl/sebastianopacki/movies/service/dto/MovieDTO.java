@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * Created by seb on 05.01.18.
  */
-public class MovieDTO implements Serializable{
+public class MovieDTO implements Serializable {
 
     private Integer id;
     private String title;
@@ -18,10 +18,11 @@ public class MovieDTO implements Serializable{
     private Set<String> actors;
     private String director;
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:sss", timezone="UTC")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:sss", timezone = "UTC")
     private Date createdAt;
 
-    public MovieDTO(){}
+    public MovieDTO() {
+    }
 
     public MovieDTO(String title, Double rating, Set<String> actors, String director, Date createdAt) {
         this.title = title;
@@ -86,9 +87,9 @@ public class MovieDTO implements Serializable{
         MovieDTO movieDTO = (MovieDTO) o;
         return
                 Objects.equals(title, movieDTO.title) &&
-                Objects.equals(rating, movieDTO.rating) &&
-                Objects.equals(actors, movieDTO.actors) &&
-                Objects.equals(director, movieDTO.director);
+                        Objects.equals(rating, movieDTO.rating) &&
+                        Objects.equals(actors, movieDTO.actors) &&
+                        Objects.equals(director, movieDTO.director);
     }
 
     @Override

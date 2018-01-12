@@ -14,7 +14,7 @@ import java.util.Optional;
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -28,7 +28,7 @@ public class Movie {
     public Movie() {
     }
 
-    Movie(MovieDTO movieDTO){
+    Movie(MovieDTO movieDTO) {
         this.id = movieDTO.getId();
         this.title = new Title(movieDTO.getTitle(), new TitleValidatorImpl());
         this.rating = new Rating(movieDTO.getRating());
@@ -67,9 +67,9 @@ public class Movie {
         Movie movie = (Movie) o;
         return
                 Objects.equals(title, movie.title) &&
-                Objects.equals(rating, movie.rating) &&
-                Objects.equals(actors, movie.actors) &&
-                Objects.equals(director, movie.director);
+                        Objects.equals(rating, movie.rating) &&
+                        Objects.equals(actors, movie.actors) &&
+                        Objects.equals(director, movie.director);
     }
 
     @Override

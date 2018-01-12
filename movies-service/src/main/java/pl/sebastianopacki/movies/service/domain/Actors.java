@@ -10,7 +10,7 @@ import java.util.Set;
  * Created by seb on 07.01.18.
  */
 @Embeddable
- class Actors {
+class Actors {
 
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> actors;
