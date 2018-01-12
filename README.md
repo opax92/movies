@@ -39,8 +39,8 @@ Controller is mapping request on "/movies", for example http://sebastian.opacki.
 * to get all movies sorted by rating please use GET request.
   
 ## Responses for add movie request:
-  * success - When movie has been added correct then true, if not then false
-  * movieFailureResultReason - Occurs only when failure, possible causes of failure:
-  * * INVALID_TITLE_MOVIE - Title must have at least 3 characters up to 50 and can contain only letters.
-  * * MOVIE_WITH_TITLE_ALREADY_EXISTS - Occurs when added movie title already exists.
-  
+  * success - when movie has been added correctly then true, if not then false.
+  * movieFailureResultReason - occurs only when failure, possible causes of failure:
+  * * INVALID_TITLE_MOVIE - title must have at least 3 characters up to 50 and can contain only letters.
+  * * INVALID_MOVIE_RATING - ratio must have exists and be correctly filled(numeric value).
+  * * MOVIE_WITH_TITLE_ALREADY_EXISTS - occurs when added movie title already exists.
