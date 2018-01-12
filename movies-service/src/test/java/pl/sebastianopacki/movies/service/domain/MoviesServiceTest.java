@@ -105,11 +105,6 @@ public class MoviesServiceTest {
 
         //when
         removeMovieWithId(2);
-
-        //then
-        assertResultSuccess();
-        assertCountMovies(0);
-        movieTitle("title").withRating(5.0).withDirector("director").withActors("one", "dwa").notExists();
     }
 
     @Test
