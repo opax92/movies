@@ -43,7 +43,6 @@ public class TitleTest {
         addTitle();
     }
 
-
     @Test(expected = InvalidTitleMovieException.class)
     public void titleTooLong() {
         //given
@@ -51,6 +50,18 @@ public class TitleTest {
 
         //when
         addTitle();
+    }
+
+    @Test
+    public void titleWithLettersAndSpaces() {
+        //given
+        titleCreate("The Shawshank Redemption");
+
+        //when
+        addTitle();
+
+        //then
+        titleCreatedSuccess();
     }
 
     private void titleCreate(String simpleTitle) {
