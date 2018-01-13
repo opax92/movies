@@ -6,18 +6,16 @@ Simple application for managing movies. You can add movies with details like you
 
 * Create Postgres database and run migration from file 'postgres_database_migration.sql'.
 * Create 'config' directory in root project path.
-* Create in 'config' directory file 'application.properties' with database credential properties: 
+* Create in 'config' directory file 'application.properties' with database credential properties, for example:
 
 ```
-spring.datasource.url =
-spring.datasource.username =
-spring.datasource.password =
+spring.datasource.url = jdbc:postgresql://localhost:5432/movies
+spring.datasource.username = moviesUser
+spring.datasource.password = moviesUserPass
 ```
-
-fill correctly above properties.
 
 ## How to use REST endpoints?
-Controller is mapping request on "/movies", for example http://sebastian.opacki.pl/movies
+Controller are mapping requests on path "/movies", for example http://{server_name}/movies
 * to add some movie please use PUT request in JSON format```
 
 ```
