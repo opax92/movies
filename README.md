@@ -41,6 +41,6 @@ When ID hasn't exists then 404 code status will be returned. When ID has wrong f
 ## Responses for add movie request:
   * success - when movie has been added correctly then true, if not then false.
   * movieFailureResultReason - occurs only when failure, possible causes of failure:
-  * * INVALID_TITLE_MOVIE - title must have at least 3 characters up to 50 and can contain only letters.
+  * * INVALID_MOVIE_TITLE - title must have at least 3 characters up to 50 and can contain only letters.
   * * INVALID_MOVIE_RATING - ratio must have exists and be correctly filled(numeric value).
   * * MOVIE_WITH_TITLE_ALREADY_EXISTS - occurs when added movie title already exists.
