@@ -16,7 +16,7 @@ spring.datasource.password = moviesUserPass
 
 ## How to use REST endpoints?
 Controller are mapping requests on path "/movies", for example http://{server_name}/movies
-* to add some movie please use PUT request in JSON format```
+* to add some movie please use PUT request in JSON format
 
 ```
 {
